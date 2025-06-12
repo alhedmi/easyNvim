@@ -46,27 +46,40 @@ function M.register_with_which_key()
   local wk = require("which-key")
   wk.setup({})
   wk.register({
-    ["<leader>"] = {
-      e = { ":NvimTreeToggle<CR>", "Toggle File Tree" },
-      ff = { "<cmd>Telescope find_files<cr>", "Find Files" },
-      fg = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-      fb = { "<cmd>Telescope buffers<cr>", "List Buffers" },
-      fh = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-      tt = { ":ToggleTerm<CR>", "Toggle Terminal" },
-      rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
-      ca = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-      q  = { ":q<CR>", "Quit" },
+  ["<leader>"] = {
+    e = { ":NvimTreeToggle<CR>", "Toggle File Tree" },
+    q = { ":q<CR>", "Quit" },
+    f = {
+      name = "Find", -- required for group
+      f = { "<cmd>Telescope find_files<cr>", "Find Files" },
+      g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+      b = { "<cmd>Telescope buffers<cr>", "List Buffers" },
+      h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
     },
-    ["<C-s>"] = { "Save File" },
-    ["<C-h>"] = { "Window Left" },
-    ["<C-l>"] = { "Window Right" },
-    ["<C-j>"] = { "Window Down" },
-    ["<C-k>"] = { "Window Up" },
-    gd = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition" },
-    gr = { "<cmd>lua vim.lsp.buf.references()<CR>", "Show References" },
-    gi = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to Implementation" },
-    K =  { "<cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover Docs" },
-  })
+    t = {
+      name = "Terminal",
+      t = { ":ToggleTerm<CR>", "Toggle Terminal" },
+    },
+    r = {
+      name = "Refactor",
+      n = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
+    },
+    c = {
+      name = "Code",
+      a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+    },
+  },
+  ["<C-s>"] = { "Save File" },
+  ["<C-h>"] = { "Window Left" },
+  ["<C-l>"] = { "Window Right" },
+  ["<C-j>"] = { "Window Down" },
+  ["<C-k>"] = { "Window Up" },
+  gd = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition" },
+  gr = { "<cmd>lua vim.lsp.buf.references()<CR>", "Show References" },
+  gi = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to Implementation" },
+  K =  { "<cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover Docs" },
+})
+
 end
 
 return M
