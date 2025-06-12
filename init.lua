@@ -11,6 +11,8 @@ require("amir.config")
 require("amir.settings")
 
 require("amir.keymaps")
+require("amir.keymaps").register_with_which_key()
+
 
 require("amir.plugins")
 
