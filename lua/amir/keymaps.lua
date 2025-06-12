@@ -29,9 +29,18 @@ keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 
+-- Nvim Tree
+keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle File Tree" })
+
+-- ToggleTerm
+keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", opts)
+
 -- Optional registration with which-key
 function M.register_with_which_key()
+  local config = require("amir.config")
+  if not config.enable_which_key then return end
   local wk = require("which-key")
+  wk.setup({})
   wk.register({
     ["<leader>"] = {
       e = { ":NvimTreeToggle<CR>", "Toggle File Tree" },
