@@ -90,8 +90,14 @@ def install_dependencies():
         run("brew install neovim git curl ripgrep fd python3 gcc")
 
     elif os_type == "Windows":
+        if not is_windows_admin():
+            print("❌ This script must be run as Administrator on Windows.")
+            print("➡️ Right-click PowerShell or CMD and choose 'Run as Administrator', then run this script again.")
+            sys.exit(1)
+
         if is_command_available("choco"):
             run("choco install -y neovim git curl ripgrep python")
+
         elif is_command_available("scoop"):
             run("scoop install neovim git curl ripgrep python")
         else:
@@ -106,6 +112,16 @@ def install_dependencies():
 
 def install_python_support():
     run("pip3 install --user pynvim")
+    
+def is_windows_admin():
+    if os.name != 'nt':
+        return False
+    try:
+        import ctypes
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except Exception:
+        return False
+
 
 def link_config():
     print("\n🔗 Linking cloned config to ~/.config/nvim ...")
