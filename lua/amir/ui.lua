@@ -2,6 +2,25 @@
 local config = require("amir.config")
 
 -- Set theme
+
+if config.theme == "catppuccin" then
+  require("catppuccin").setup({
+    flavour = "mocha", -- Options: "latte", "frappe", "macchiato", "mocha"
+    integrations = {
+      lualine = true,
+      treesitter = true,
+      which_key = true,
+      noice = true,
+      notify = true,
+      cmp = true,
+      gitsigns = true,
+      mason = true,
+      nvimtree = true,
+      telescope = true,
+    },
+  })
+end
+
 vim.cmd.colorscheme(config.theme)
 
 -- Enable true color support
