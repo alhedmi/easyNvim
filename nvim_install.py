@@ -137,9 +137,15 @@ def link_config():
 
 def install_lazy_nvim():
     lazy_path = os.path.expanduser("~/.local/share/nvim/site/pack/lazy/start/lazy.nvim")
-    if not os.path.exists(lazy_path):
-        print("⬇️  Installing lazy.nvim plugin manager...")
-        run("git clone https://github.com/folke/lazy.nvim " + lazy_path)
+
+    # Force remove old Lazy.nvim folder (if any)
+    if os.path.exists(lazy_path):
+        print(f"🔄 Reinstalling lazy.nvim...")
+        shutil.rmtree(lazy_path, ignore_errors=True)
+
+    # Fresh clone
+    run("git clone https://github.com/folke/lazy.nvim " + lazy_path)
+
 
 def launch_nvim_terminal():
     print("\n🚀 Opening NeoVim in a new terminal window to install plugins...")
