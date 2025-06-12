@@ -1,0 +1,2 @@
+# easyNvim
+Coming soon
