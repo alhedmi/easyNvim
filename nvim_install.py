@@ -66,7 +66,14 @@ def clean_old_config():
     for path in [NVIM_CONFIG_PATH, NVIM_DATA_PATH, NVIM_CACHE_PATH]:
         if os.path.exists(path):
             print(f"🧹 Removing {path} ...")
-            shutil.rmtree(path)
+            try:
+                if os.path.islink(path):
+                    os.unlink(path)
+                else:
+                    shutil.rmtree(path)
+            except Exception as e:
+                print(f"❌ Failed to remove {path}: {e}")
+
 
 def install_dependencies():
     os_type = platform.system()
