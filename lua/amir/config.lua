@@ -3,6 +3,25 @@
 
 local M = {}
 
+if config.theme == "catppuccin" then
+  require("catppuccin").setup({
+    flavour = "mocha", -- Options: "latte", "frappe", "macchiato", "mocha"
+    integrations = {
+      lualine = true,
+      treesitter = true,
+      which_key = true,
+      noice = true,
+      notify = true,
+      cmp = true,
+      gitsigns = true,
+      mason = true,
+      nvimtree = true,
+      telescope = true,
+    },
+  })
+end
+
+
 M.theme = "catppuccin"   -- Options: "tokyonight", "gruvbox", "catppuccin"
 M.use_fancy_ui = true     -- Enable lspsaga, noice.nvim, etc.
 
