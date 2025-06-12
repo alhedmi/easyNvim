@@ -1,4 +1,3 @@
--- lua/amir/plugins.lua
 local config = require("amir.config")
 
 -- Bootstrap lazy.nvim if not installed
@@ -45,111 +44,54 @@ require("lazy").setup({
   -- 🚨 Diagnostics UI
   { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
-  -- 🔍 Signature Help
-  {
-    "ray-x/lsp_signature.nvim",
-    enabled = config.enable_signature_help,
-  },
+  -- 🔍 Signature Help (optional)
+  config.enable_signature_help and { "ray-x/lsp_signature.nvim" } or nil,
 
-  -- 💅 Fancy UI
-  {
+  -- 💅 Fancy UI (optional)
+  config.use_fancy_ui and {
     "folke/noice.nvim",
-    enabled = config.use_fancy_ui,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     }
-  },
+  } or nil,
 
-  -- 📚 LSP Saga
-  {
+  -- 📚 LSP Saga (optional)
+  config.enable_lspsaga and {
     "nvimdev/lspsaga.nvim",
-    enabled = config.enable_lspsaga,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
+    dependencies = { "nvim-tree/nvim-web-devicons" }
+  } or nil,
 
   -- 📐 Indentation Guides
-  {
+  config.enable_indent_guides and {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {},
-    enabled = config.enable_indent_guides,
-  },
+  } or nil,
 
-  -- 📁 File Tree
-  {
+  -- 📁 File Tree (optional)
+  config.enable_file_tree and {
     "nvim-tree/nvim-tree.lua",
-    enabled = config.enable_file_tree,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup()
     end,
-  },
+  } or nil,
 
-  -- ⌨️ Which-Key
-  {
-  "folke/which-key.nvim",
-  enabled = config.enable_which_key,
-  config = function()
-    local wk = require("which-key")
-
-    wk.setup()
-
-    wk.register({
-      ["<leader>"] = {
-        -- 📁 File Tree
-        e = { ":NvimTreeToggle<CR>", "Toggle File Tree" },
-
-        -- ❌ Quit
-        q = { ":q<CR>", "Quit" },
-
-        -- 🔍 Telescope
-        f = {
-          name = "Find",
-          f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-          g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-          b = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
-          h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-        },
-
-        -- 🖥️ Terminal
-        t = {
-          name = "Terminal",
-          t = { ":ToggleTerm<CR>", "Toggle Terminal" },
-        },
-
-        -- 🧠 LSP
-        l = {
-          name = "LSP",
-          rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
-          ca = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-        },
-      }
-    })
-  end
-},
+  -- ⌨️ Which-Key (optional)
+  config.enable_which_key and {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup()
+      require("amir.keymaps").register_with_which_key()
+    end
+  } or nil,
 
   -- 🚀 Extras
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    enabled = config.enable_terminal,
-  },
-
-  {
-    "goolord/alpha-nvim",
-    enabled = config.enable_dashboard,
-  },
-
-  {
-    "kylechui/nvim-surround",
-    enabled = config.enable_surround,
-  },
-
-  {
-    "windwp/nvim-autopairs",
-    enabled = config.enable_autopairs,
-  },
+  config.enable_terminal and { "akinsho/toggleterm.nvim", version = "*" } or nil,
+  config.enable_dashboard and { "goolord/alpha-nvim" } or nil,
+  config.enable_surround and { "kylechui/nvim-surround" } or nil,
+  config.enable_autopairs and { "windwp/nvim-autopairs" } or nil,
 
   -- 💬 Comments
   { "numToStr/Comment.nvim", opts = {}, lazy = false },
