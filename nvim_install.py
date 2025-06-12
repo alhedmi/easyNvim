@@ -63,14 +63,31 @@ def prompt_user():
         clean_old_config()
 
 def clean_old_config():
-    for path in [NVIM_CONFIG_PATH, NVIM_DATA_PATH, NVIM_CACHE_PATH]:
-        if os.path.exists(path):
+    print()
+
+    for path in [NVIM_CONFIG_PATH, NVIM_DATA_PATH]:
+        if os.path.exists(path) or os.path.islink(path):
             print(f"🧹 Removing {path} ...")
             try:
-                if os.path.islink(path):
-                    os.unlink(path)
+                if os.name == 'nt':
+                    # For symbolic links
+                    if os.path.islink(path):
+                        os.unlink(path)
+                    # For directories with protected Git files (e.g. lazy.nvim)
+                    elif os.path.isdir(path):
+                        # Take ownership and grant permissions before deletion
+                        run(f'takeown /f "{path}" /r /d Y', check=False)
+                        run(f'icacls "{path}" /grant %USERNAME%:F /t', check=False)
+                        run(f'rmdir /s /q "{path}"', check=False)
+                    else:
+                        os.remove(path)
                 else:
-                    shutil.rmtree(path)
+                    # Unix-like systems
+                    if os.path.islink(path):
+                        os.unlink(path)
+                    else:
+                        shutil.rmtree(path, ignore_errors=True)
+
             except Exception as e:
                 print(f"❌ Failed to remove {path}: {e}")
 
