@@ -1,39 +1,43 @@
 local M = {}
 
 local keymap = vim.keymap
-local opts = { noremap = true, silent = true }
+
+-- Define a helper to simplify setting keymaps with descriptions
+local function map(mode, lhs, rhs, desc)
+  keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = desc })
+end
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Safe fallback keymaps that always load
-keymap.set("n", "<C-s>", ":w<CR>", opts)
-keymap.set("i", "<C-s>", "<Esc>:w<CR>a", opts)
-keymap.set("n", "<leader>q", ":q<CR>", opts)
-keymap.set("n", "<C-h>", "<C-w>h", opts)
-keymap.set("n", "<C-l>", "<C-w>l", opts)
-keymap.set("n", "<C-j>", "<C-w>j", opts)
-keymap.set("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-s>", ":w<CR>", "Save File")
+map("i", "<C-s>", "<Esc>:w<CR>a", "Save File")
+map("n", "<leader>q", ":q<CR>", "Quit")
+map("n", "<C-h>", "<C-w>h", "Move to Left Window")
+map("n", "<C-l>", "<C-w>l", "Move to Right Window")
+map("n", "<C-j>", "<C-w>j", "Move to Lower Window")
+map("n", "<C-k>", "<C-w>k", "Move to Upper Window")
 
 -- LSP-like bindings
-keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition")
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", "Show References")
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to Implementation")
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover Docs")
+map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol")
+map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action")
 
 -- Telescope basic mappings
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", "Find Files")
+map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", "Live Grep")
+map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", "List Buffers")
+map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", "Help Tags")
 
 -- Nvim Tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle File Tree" })
+map("n", "<leader>e", ":NvimTreeToggle<CR>", "Toggle File Tree")
 
 -- ToggleTerm
-keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", opts)
+map("n", "<leader>tt", ":ToggleTerm<CR>", "Toggle Terminal")
 
 -- Optional registration with which-key
 function M.register_with_which_key()
