@@ -45,53 +45,77 @@ require("lazy").setup({
   -- 🚨 Diagnostics UI
   { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
-  -- 🔍 Signature Help (optional)
-  config.enable_signature_help and { "ray-x/lsp_signature.nvim" } or nil,
+  -- 🔍 Signature Help
+  {
+    "ray-x/lsp_signature.nvim",
+    enabled = config.enable_signature_help,
+  },
 
-  -- 💅 Fancy UI (optional)
-  config.use_fancy_ui and {
+  -- 💅 Fancy UI
+  {
     "folke/noice.nvim",
+    enabled = config.use_fancy_ui,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     }
-  } or nil,
+  },
 
-  -- 📚 LSP Saga (optional)
-  config.enable_lspsaga and {
+  -- 📚 LSP Saga
+  {
     "nvimdev/lspsaga.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" }
-  } or nil,
+    enabled = config.enable_lspsaga,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 
   -- 📐 Indentation Guides
-  config.enable_indent_guides and {
+  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {},
-  } or nil,
+    enabled = config.enable_indent_guides,
+  },
 
-  -- 📁 File Tree (optional)
-  config.enable_file_tree and {
+  -- 📁 File Tree
+  {
     "nvim-tree/nvim-tree.lua",
+    enabled = config.enable_file_tree,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup()
     end,
-  } or nil,
+  },
 
-  -- ⌨️ Which-Key (optional)
-  config.enable_which_key and {
+  -- ⌨️ Which-Key
+  {
     "folke/which-key.nvim",
+    enabled = config.enable_which_key,
     config = function()
       require("which-key").setup()
     end
-  } or nil,
+  },
 
   -- 🚀 Extras
-  config.enable_terminal and { "akinsho/toggleterm.nvim", version = "*" } or nil,
-  config.enable_dashboard and { "goolord/alpha-nvim" } or nil,
-  config.enable_surround and { "kylechui/nvim-surround" } or nil,
-  config.enable_autopairs and { "windwp/nvim-autopairs" } or nil,
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    enabled = config.enable_terminal,
+  },
+
+  {
+    "goolord/alpha-nvim",
+    enabled = config.enable_dashboard,
+  },
+
+  {
+    "kylechui/nvim-surround",
+    enabled = config.enable_surround,
+  },
+
+  {
+    "windwp/nvim-autopairs",
+    enabled = config.enable_autopairs,
+  },
 
   -- 💬 Comments
   { "numToStr/Comment.nvim", opts = {}, lazy = false },
