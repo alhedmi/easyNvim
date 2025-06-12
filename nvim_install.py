@@ -138,13 +138,15 @@ def link_config():
 def install_lazy_nvim():
     lazy_path = os.path.expanduser("~/.local/share/nvim/site/pack/lazy/start/lazy.nvim")
 
-    # Force remove old Lazy.nvim folder (if any)
-    if os.path.exists(lazy_path):
-        print(f"🔄 Reinstalling lazy.nvim...")
+    print(f"🔄 Reinstalling lazy.nvim...")
+
+    # Windows needs shell removal due to permissions/depth issues
+    if os.name == 'nt':
+        run(f'rmdir /s /q "{lazy_path}"', check=False)
+    else:
         shutil.rmtree(lazy_path, ignore_errors=True)
 
-    # Fresh clone
-    run("git clone https://github.com/folke/lazy.nvim " + lazy_path)
+    run("git clone https://github.com/folke/lazy.nvim \"" + lazy_path + "\"")
 
 
 def launch_nvim_terminal():
