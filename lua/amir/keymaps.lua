@@ -1,31 +1,3 @@
--- lua/amir/keymaps.lua
-local M = {}
-
-local keymap = vim.keymap
-
--- Helper function for keymaps with desc
-local function map(mode, lhs, rhs, desc)
-  keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = desc })
-end
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
--- 🧷 Core Keymaps (Not registered in which-key)
-map("n", "<C-s>", ":w<CR>", "Save File")
-map("i", "<C-s>", "<Esc>:w<CR>a", "Save File")
-map("n", "<C-h>", "<C-w>h", "Move to Left Window")
-map("n", "<C-l>", "<C-w>l", "Move to Right Window")
-map("n", "<C-j>", "<C-w>j", "Move to Lower Window")
-map("n", "<C-k>", "<C-w>k", "Move to Upper Window")
-
--- 🧠 LSP Essentials (Not grouped under <leader>)
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition")
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", "Show References")
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to Implementation")
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover Docs")
-
--- 🧭 Optional registration with which-key
 function M.register_with_which_key()
   local config = require("amir.config")
   if not config.enable_which_key then return end
@@ -74,5 +46,3 @@ function M.register_with_which_key()
     K  = { "<cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover Docs" },
   })
 end
-
-return M
