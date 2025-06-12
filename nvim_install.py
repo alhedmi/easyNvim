@@ -152,6 +152,7 @@ def link_config():
     config_parent = os.path.dirname(NVIM_CONFIG_PATH)
     os.makedirs(config_parent, exist_ok=True)
 
+    # Clean existing config if needed
     if os.path.exists(NVIM_CONFIG_PATH) or os.path.islink(NVIM_CONFIG_PATH):
         print(f"🔁 Removing existing config at {NVIM_CONFIG_PATH} ...")
         try:
@@ -163,11 +164,23 @@ def link_config():
             print(f"❌ Failed to remove old config: {e}")
             sys.exit(1)
 
+    # Create the link
     try:
-        os.symlink(CURRENT_DIR, NVIM_CONFIG_PATH)
-        print("✅ Symlink created successfully.")
+        if os.name == 'nt':
+            print("🔗 Creating junction (mklink /J) on Windows ...")
+            run(f'mklink /J "{NVIM_CONFIG_PATH}" "{CURRENT_DIR}"')
+        else:
+            print("🔗 Creating symlink (Unix-style) ...")
+            os.symlink(CURRENT_DIR, NVIM_CONFIG_PATH)
+
+        # Extra: test that NeoVim will see this
+        if not os.path.isfile(os.path.join(NVIM_CONFIG_PATH, "init.lua")):
+            raise FileNotFoundError("init.lua not found in linked directory")
+
+        print("✅ Link created successfully.")
+
     except Exception as e:
-        print(f"❌ Failed to create symlink: {e}")
+        print(f"❌ Failed to create link: {e}")
         sys.exit(1)
 
 
