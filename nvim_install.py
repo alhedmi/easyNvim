@@ -59,7 +59,7 @@ def prompt_user():
     if choice != "yes":
         print("🚫 Installation aborted.")
         sys.exit(0)
-    else
+    else:
         clean_old_config()
 
 def clean_old_config():
