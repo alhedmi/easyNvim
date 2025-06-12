@@ -6,11 +6,11 @@
 -- ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
 -- Amir's NeoVim Config (modular & portable)
 
-require("amir.config")
 
 require("amir.settings")
 
 require("amir.plugins")
+require("amir.config")
 
 
 require("amir.keymaps")
