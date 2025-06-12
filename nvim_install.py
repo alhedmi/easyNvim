@@ -190,8 +190,18 @@ def main():
     install_python_support()
     link_config()
     install_lazy_nvim()
-    launch_nvim_terminal()
-    print("\n✅ Neovim is fully installed and ready to use!\n")
+    
+    if shutil.which("nvim") is None:
+        print("\n⚠️  'nvim' not found in PATH.")
+        print("➡️  This may happen if NeoVim was just installed.")
+        print("🔁 Please restart PowerShell or run manually:\n")
+        print('    nvim +"Lazy sync"\n')
+    else:
+        launch_nvim_terminal()
+
+        print("\n✅ NeoVim setup is complete!")
+
+        print("\n✅ Neovim is fully installed and ready to use!\n")
 
 if __name__ == "__main__":
     main()
