@@ -132,8 +132,27 @@ def is_windows_admin():
 
 def link_config():
     print("\n🔗 Linking cloned config to ~/.config/nvim ...")
-    os.makedirs(os.path.dirname(NVIM_CONFIG_PATH), exist_ok=True)
-    os.symlink(CURRENT_DIR, NVIM_CONFIG_PATH)
+    config_parent = os.path.dirname(NVIM_CONFIG_PATH)
+    os.makedirs(config_parent, exist_ok=True)
+
+    if os.path.exists(NVIM_CONFIG_PATH) or os.path.islink(NVIM_CONFIG_PATH):
+        print(f"🔁 Removing existing config at {NVIM_CONFIG_PATH} ...")
+        try:
+            if os.path.islink(NVIM_CONFIG_PATH):
+                os.unlink(NVIM_CONFIG_PATH)
+            else:
+                shutil.rmtree(NVIM_CONFIG_PATH)
+        except Exception as e:
+            print(f"❌ Failed to remove old config: {e}")
+            sys.exit(1)
+
+    try:
+        os.symlink(CURRENT_DIR, NVIM_CONFIG_PATH)
+        print("✅ Symlink created successfully.")
+    except Exception as e:
+        print(f"❌ Failed to create symlink: {e}")
+        sys.exit(1)
+
 
 def install_lazy_nvim():
     lazy_path = os.path.expanduser("~\\AppData\\Local\\nvim-data\\lazy\\lazy.nvim")
