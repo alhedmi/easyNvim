@@ -88,12 +88,46 @@ require("lazy").setup({
 
   -- ⌨️ Which-Key
   {
-    "folke/which-key.nvim",
-    enabled = config.enable_which_key,
-    config = function()
-      require("which-key").setup()
-    end
-  },
+  "folke/which-key.nvim",
+  enabled = config.enable_which_key,
+  config = function()
+    local wk = require("which-key")
+
+    wk.setup()
+
+    wk.register({
+      ["<leader>"] = {
+        -- 📁 File Tree
+        e = { ":NvimTreeToggle<CR>", "Toggle File Tree" },
+
+        -- ❌ Quit
+        q = { ":q<CR>", "Quit" },
+
+        -- 🔍 Telescope
+        f = {
+          name = "Find",
+          f = { "<cmd>Telescope find_files<cr>", "Find Files" },
+          g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+          b = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
+          h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
+        },
+
+        -- 🖥️ Terminal
+        t = {
+          name = "Terminal",
+          t = { ":ToggleTerm<CR>", "Toggle Terminal" },
+        },
+
+        -- 🧠 LSP
+        l = {
+          name = "LSP",
+          rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
+          ca = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+        },
+      }
+    })
+  end
+},
 
   -- 🚀 Extras
   {
