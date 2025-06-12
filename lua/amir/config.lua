@@ -13,6 +13,8 @@ M.enable_surround = true
 M.enable_autopairs = true
 M.enable_signature_help = true
 M.enable_lspsaga = false
+M.enable_which_key = true
+M.enable_file_tree = true
 M.enable_indent_guides = true
 
 return M
