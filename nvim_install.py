@@ -71,7 +71,7 @@ def clean_old_config():
 def install_dependencies():
     os_type = platform.system()
     print(f"\n🛠 Installing dependencies for {os_type}...\n")
-    
+
     if os_type == "Linux":
         if is_command_available("apt"):
             run("sudo apt update")
@@ -82,11 +82,24 @@ def install_dependencies():
         else:
             print("Unsupported Linux package manager.")
             sys.exit(1)
+
     elif os_type == "Darwin":
         if not is_command_available("brew"):
             print("🍺 Homebrew not found. Install it from https://brew.sh first.")
             sys.exit(1)
         run("brew install neovim git curl ripgrep fd python3 gcc")
+
+    elif os_type == "Windows":
+        if is_command_available("choco"):
+            run("choco install -y neovim git curl ripgrep python")
+        elif is_command_available("scoop"):
+            run("scoop install neovim git curl ripgrep python")
+        else:
+            print("❌ No supported package manager found (choco or scoop).")
+            print("➡️ Please install dependencies manually or install Chocolatey from:")
+            print("   https://chocolatey.org/install")
+            sys.exit(1)
+
     else:
         print(f"Unsupported OS: {os_type}")
         sys.exit(1)
