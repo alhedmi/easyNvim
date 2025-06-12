@@ -1,3 +1,4 @@
+-- lua/amir/plugins.lua
 local config = require("amir.config")
 
 -- Bootstrap lazy.nvim if not installed
@@ -45,53 +46,57 @@ require("lazy").setup({
   { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
   -- 🔍 Signature Help (optional)
-  config.enable_signature_help and { "ray-x/lsp_signature.nvim" } or nil,
+  { "ray-x/lsp_signature.nvim", enabled = config.enable_signature_help },
 
   -- 💅 Fancy UI (optional)
-  config.use_fancy_ui and {
+  {
     "folke/noice.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
-    }
-  } or nil,
+    },
+    enabled = config.use_fancy_ui
+  },
 
   -- 📚 LSP Saga (optional)
-  config.enable_lspsaga and {
+  {
     "nvimdev/lspsaga.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" }
-  } or nil,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    enabled = config.enable_lspsaga
+  },
 
   -- 📐 Indentation Guides
-  config.enable_indent_guides and {
+  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {},
-  } or nil,
+    enabled = config.enable_indent_guides
+  },
 
   -- 📁 File Tree (optional)
-  config.enable_file_tree and {
+  {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup()
     end,
-  } or nil,
+    enabled = config.enable_file_tree
+  },
 
   -- ⌨️ Which-Key (optional)
-  config.enable_which_key and {
+  {
     "folke/which-key.nvim",
     config = function()
       require("which-key").setup()
-      require("amir.keymaps").register_with_which_key()
-    end
-  } or nil,
+    end,
+    enabled = config.enable_which_key
+  },
 
   -- 🚀 Extras
-  config.enable_terminal and { "akinsho/toggleterm.nvim", version = "*" } or nil,
-  config.enable_dashboard and { "goolord/alpha-nvim" } or nil,
-  config.enable_surround and { "kylechui/nvim-surround" } or nil,
-  config.enable_autopairs and { "windwp/nvim-autopairs" } or nil,
+  { "akinsho/toggleterm.nvim", version = "*", enabled = config.enable_terminal },
+  { "goolord/alpha-nvim", enabled = config.enable_dashboard },
+  { "kylechui/nvim-surround", enabled = config.enable_surround },
+  { "windwp/nvim-autopairs", enabled = config.enable_autopairs },
 
   -- 💬 Comments
   { "numToStr/Comment.nvim", opts = {}, lazy = false },
