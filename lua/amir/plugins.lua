@@ -16,18 +16,18 @@ require("lazy").setup({
   -- 🌐 Plugin Manager (self)
   { "folke/lazy.nvim" },
 
-  --  Themes
+  -- 🎨 Themes
   { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
   { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 },
 
-  --  Essentials
+  -- 🔧 Essentials
   { "nvim-lua/plenary.nvim" },
   { "nvim-tree/nvim-web-devicons" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-telescope/telescope.nvim", tag = "0.1.3" },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
-  --  LSP, Completion, Snippets
+  -- ⚙️ LSP, Completion, Snippets
   { "neovim/nvim-lspconfig" },
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
@@ -39,16 +39,16 @@ require("lazy").setup({
   { "L3MON4D3/LuaSnip" },
   { "rafamadriz/friendly-snippets" },
 
-  --  Formatting & Linting
+  -- 🧼 Formatting & Linting
   { "stevearc/conform.nvim" },
 
-  --  Diagnostics UI
+  -- 🚨 Diagnostics UI
   { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
-  --  Signature help
+  -- 🔍 Signature Help (optional)
   config.enable_signature_help and { "ray-x/lsp_signature.nvim" } or nil,
 
-  --  Fancy UI (optional)
+  -- 💅 Fancy UI (optional)
   config.use_fancy_ui and {
     "folke/noice.nvim",
     dependencies = {
@@ -57,23 +57,45 @@ require("lazy").setup({
     }
   } or nil,
 
+  -- 📚 LSP Saga (optional)
   config.enable_lspsaga and {
     "nvimdev/lspsaga.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" }
   } or nil,
 
-  -- 📐 Indentation guides
-  config.enable_indent_guides and { "lukas-reineke/indent-blankline.nvim" } or nil,
+  -- 📐 Indentation Guides
+  config.enable_indent_guides and {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {},
+  } or nil,
 
-  --  Extras
-  config.enable_terminal and { "akinsho/toggleterm.nvim", version = "*"} or nil,
+  -- 📁 File Tree (optional)
+  config.enable_file_tree and {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("nvim-tree").setup()
+    end,
+  } or nil,
+
+  -- ⌨️ Which-Key (optional)
+  config.enable_which_key and {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup()
+    end
+  } or nil,
+
+  -- 🚀 Extras
+  config.enable_terminal and { "akinsho/toggleterm.nvim", version = "*" } or nil,
   config.enable_dashboard and { "goolord/alpha-nvim" } or nil,
   config.enable_surround and { "kylechui/nvim-surround" } or nil,
   config.enable_autopairs and { "windwp/nvim-autopairs" } or nil,
 
-  -- Comments
+  -- 💬 Comments
   { "numToStr/Comment.nvim", opts = {}, lazy = false },
 
-  --  Git integration
+  -- 🔀 Git integration
   { "lewis6991/gitsigns.nvim" },
 }, {})
