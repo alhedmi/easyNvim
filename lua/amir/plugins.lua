@@ -19,7 +19,7 @@ require("lazy").setup({
   -- 🎨 Themes
   { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
   { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000, lazy = false },
+  { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 },
 
   -- 🔧 Essentials
   { "nvim-lua/plenary.nvim" },
