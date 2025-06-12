@@ -136,7 +136,7 @@ def link_config():
     os.symlink(CURRENT_DIR, NVIM_CONFIG_PATH)
 
 def install_lazy_nvim():
-    lazy_path = os.path.expanduser("~/.local/share/nvim/site/pack/lazy/start/lazy.nvim")
+    lazy_path = os.path.expanduser("~\\AppData\\Local\\nvim-data\\lazy\\lazy.nvim")
 
     print(f"🔄 Reinstalling lazy.nvim...")
 
