@@ -164,7 +164,7 @@ def launch_nvim_terminal():
         run(f"osascript -e '{script}'")
 
     elif os_type == "Windows":
-        run('start powershell -NoExit nvim +"Lazy sync"', check=False)
+        run('powershell.exe -NoExit -Command "nvim +\\"Lazy sync\\""', check=False)
 
     else:
         print("❌ Unsupported OS. Please run: `nvim +Lazy sync` manually.")
