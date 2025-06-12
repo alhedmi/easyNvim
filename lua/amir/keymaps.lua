@@ -6,8 +6,10 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- map "<leader>e" to toggle file explorer
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
+-- map "<leader>e" to "NvimTreeToggle"
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle File Tree" })
+
 
 -- map "<Ctrl-s>" to save in normal and insert mode
 keymap.set("n", "<C-s>", ":w<CR>", opts)
