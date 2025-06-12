@@ -1,46 +1,45 @@
 -- lua/amir/ui.lua
 local config = require("amir.config")
 
--- Set theme
-
+-- 🖌️ Load Catppuccin (only if selected)
 if config.theme == "catppuccin" then
   require("catppuccin").setup({
-    flavour = "mocha", -- Options: "latte", "frappe", "macchiato", "mocha"
+    flavour = "mocha", -- "latte", "frappe", "macchiato", "mocha"
     integrations = {
       lualine = true,
       treesitter = true,
-      which_key = true,
-      noice = true,
-      notify = true,
-      cmp = true,
-      gitsigns = true,
-      mason = true,
-      nvimtree = true,
       telescope = true,
+      which_key = true,
+      notify = true,
+      noice = true,
+      cmp = true,
+      mason = true,
+      gitsigns = true,
+      nvimtree = true,
     },
   })
 end
 
+-- Apply the colorscheme
 vim.cmd.colorscheme(config.theme)
 
--- Enable true color support
+-- Enable true color
 vim.opt.termguicolors = true
 
--- Setup lualine (status line)
+-- Setup lualine
 require("lualine").setup({
   options = {
     theme = config.theme,
     section_separators = "",
     component_separators = "",
-  }
+  },
 })
 
--- Indentation guides (if enabled)
+-- Optional UI plugins
 if config.enable_indent_guides then
   require("ibl").setup()
 end
 
--- Fancy UI: noice + notify (if enabled)
 if config.use_fancy_ui then
   require("notify").setup({})
   vim.notify = require("notify")
