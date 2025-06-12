@@ -10,11 +10,13 @@ require("amir.config")
 
 require("amir.settings")
 
+require("amir.plugins")
+
+
 require("amir.keymaps")
 require("amir.keymaps").register_with_which_key()
 
 
-require("amir.plugins")
 
 require("amir.ui")
 
