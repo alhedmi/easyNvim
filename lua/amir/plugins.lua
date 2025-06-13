@@ -92,23 +92,6 @@ require("lazy").setup({
     end,
     enabled = config.enable_which_key
   },
-    -- 🖌️ Load Catppuccin (only if selected)
-    require("catppuccin").setup({
-      flavour = "mocha", -- "latte", "frappe", "macchiato", "mocha"
-      integrations = {
-        lualine = true,
-        treesitter = true,
-        telescope = true,
-        which_key = true,
-        notify = true,
-        noice = true,
-        cmp = true,
-        mason = true,
-        gitsigns = true,
-        nvimtree = true,
-      },
-    })
-  
 
   -- 🚀 Extras
   { "akinsho/toggleterm.nvim", version = "*", enabled = config.enable_terminal },
