@@ -4,7 +4,7 @@
 local M = {}
 
 
-M.theme = "catppuccin"   -- Options: "tokyonight", "gruvbox", "catppuccin"
+M.theme = "catppuccin-mocha"   -- Options: "tokyonight", "gruvbox", "catppuccin" catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 M.use_fancy_ui = true     -- Enable lspsaga, noice.nvim, etc.
 
 -- Extras (toggle plugins)
