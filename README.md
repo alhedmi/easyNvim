@@ -4,6 +4,7 @@ Coming soon
 
 
 
+pip install pyfiglet rich
 
 
 

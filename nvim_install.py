@@ -6,6 +6,11 @@ import shutil
 import subprocess
 import sys
 
+from pyfiglet import Figlet
+from rich.console import Console
+
+
+
 HOME = os.path.expanduser("~")
 NVIM_CONFIG_PATH = os.path.join(HOME, ".config", "nvim")
 NVIM_DATA_PATH = os.path.join(HOME, ".local", "share", "nvim")
@@ -236,7 +241,39 @@ def validate_repo_structure():
         print("❌ Error: This script must be run from the root of your cloned NeoVim config repo.")
         sys.exit(1)
 
+def welcome():
+
+    console = Console()
+    f = Figlet(font="ansi_shadow")  # Terminal Formatting!  dotmatrix
+    ff = Figlet(font = "speed") 
+
+    ascii_art_name = ff.renderText("Amir's")
+    ascii_art = f.renderText("EASYNVIM")
+    
+    console.print(ascii_art_name, style="bold red")
+    console.print(ascii_art, style="bold yellow")
+    
+    
+    
+    console.print(
+    "[bold cyan]This installation process is designed to be as automated as possible,[/bold cyan] "
+    "[bold cyan]requiring minimal user input.[/bold cyan]\n\n"
+    
+    "[yellow]However, you will be prompted to confirm certain steps when necessary.[/yellow]\n\n"
+    
+    "[bold red]Note for Windows users:[/bold red]\n"
+    "[green]- You may need to manually restart PowerShell.[/green]\n"
+    "[green]- You may also need to launch Neovim for the first time manually.[/green]\n\n"
+    
+    "[bold yellow]If prompted, simply follow the on-screen instructions.[/bold yellow]\n"
+)
+
+    if (input('press any key to continue OR "Q" to Quit the installation\n').strip().lower()) == "q":
+        sys.exit(0)
+      
+
 def main():
+    welcome()
     validate_repo_structure()
     prompt_user()
   

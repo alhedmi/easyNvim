@@ -18,8 +18,9 @@ require("lazy").setup({
 
   -- 🎨 Themes
   { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
-  { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 },
+  { "sainnhe/gruvbox-material", lazy = false, priority = 1000 },
   { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 },
+  { 'projekt0n/github-nvim-theme', name = 'github-theme' },
 
   -- 🔧 Essentials
   { "nvim-lua/plenary.nvim" },
