@@ -95,6 +95,16 @@ require("lazy").setup({
   },
 
   -- 🚀 Extras
+
+{
+  "iamcco/markdown-preview.nvim",
+  build = "cd app && npm install",
+  ft = { "markdown" },
+  config = function()
+    vim.g.mkdp_auto_start = 1  -- Optional: auto-start preview
+  end,
+},
+
   { "akinsho/toggleterm.nvim", version = "*", enabled = config.enable_terminal },
   { "goolord/alpha-nvim", enabled = config.enable_dashboard },
   { "kylechui/nvim-surround", enabled = config.enable_surround },

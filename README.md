@@ -1,13 +1,17 @@
 # easyNvim
-Coming soon
+Prober _README_ Coming soon
 
 
 
-
+**requirment.txt** comming soon includes
+```
 pip install pyfiglet rich
+```
 
-
-
+Or With Chocolatey on Windows:
+```
+choco install pyfiglet rich
+```
 ⚠️ **Windows Users: Run as Administrator**
 
 If you're on Windows, you must run the installer with elevated privileges:
