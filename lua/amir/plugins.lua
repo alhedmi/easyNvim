@@ -15,12 +15,37 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- 🌐 Plugin Manager (self)
   { "folke/lazy.nvim" },
-
+    
   -- 🎨 Themes
   { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
   { "sainnhe/gruvbox-material", lazy = false, priority = 1000 },
   { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 },
   { 'projekt0n/github-nvim-theme', name = 'github-theme' },
+  
+  {"xiyaowong/nvim-transparent",
+  config = function()
+    require("transparent").setup({
+      enable = true,
+      extra_groups = {
+        "NormalFloat", "NvimTreeNormal", "TelescopeNormal"
+      },
+      exclude = {}, -- Or add "StatusLine", etc.
+    })
+  end
+},
+  -- Animations
+ {"echasnovski/mini.animate",
+  version = false,
+  config = function()
+    require("mini.animate").setup({
+      scroll = { enable = true },
+      resize = { enable = true },
+      cursor = { enable = false },
+      open = { enable = true },
+      close = { enable = true },
+    })
+  end,
+},
 
   -- 🔧 Essentials
   { "nvim-lua/plenary.nvim" },
@@ -59,6 +84,29 @@ require("lazy").setup({
     },
     enabled = config.use_fancy_ui
   },
+    
+
+
+  -- Tab System 
+  
+   {
+       "akinsho/bufferline.nvim",
+       dependencies = "nvim-tree/nvim-web-devicons",
+       config = function()
+        require("bufferline").setup({
+          options = {
+            show_buffer_close_icons = true,
+            show_close_icon = false,
+            indicator = {
+              style = "icon",
+              icon = "▎"
+            },
+            diagnostics = "nvim_lsp",
+            separator_style = "slant",
+          }
+        })
+       end,
+   },
 
   -- 📚 LSP Saga (optional)
   {
