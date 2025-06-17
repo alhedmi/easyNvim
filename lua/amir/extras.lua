@@ -45,6 +45,7 @@ dashboard.section.header.val = {
     dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
     dashboard.button("f", "󰈞  Find file", ":Telescope find_files<CR>"),
     dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
+    dashboard.button("s", "󰁯  Restore Session", ":SessionRestore<CR>"),
     dashboard.button("t", "  File Tree", ":NvimTreeToggle<CR>"),
     dashboard.button("q", "󰗼  Quit", ":qa<CR>"),
   }
@@ -102,3 +103,4 @@ end
 if config.enable_autopairs then
   require("nvim-autopairs").setup({})
 end
+

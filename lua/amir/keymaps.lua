@@ -67,6 +67,20 @@ end, { desc = "Smart Tab or Buffer Close", noremap = true, silent = true })
 keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
 keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
 
+
+-- Directory Hopping!!
+vim.keymap.set("n", "<leader>cd", function()
+  local file_path = vim.fn.expand("%:p")
+  if file_path == "" then
+    vim.api.nvim_echo({ { "⚠️ No file selected in active window!", "WarningMsg" } }, false, {})
+    return
+  end
+
+  local dir_path = vim.fn.fnamemodify(file_path, ":h")
+  vim.fn.setreg("+", dir_path)
+  vim.api.nvim_echo({ { "📋 Copied directory to clipboard: " .. dir_path, "Normal" } }, false, {})
+end, { desc = "Copy active file's directory to clipboard" })
+
 -- 📚 LSP bindings
 keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to Definition", unpack(opts) })
 keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "Show References", unpack(opts) })

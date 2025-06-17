@@ -6,7 +6,7 @@
 local wezterm = require 'wezterm'
 
 return {
-  color_scheme = "Catppuccin Mocha",
+  color_scheme = "gruvbox-material",
   font = wezterm.font_with_fallback({
     "JetBrainsMono Nerd Font",
   }),
@@ -18,11 +18,11 @@ return {
           File = "C:/Users/ameer/AppData/Local/nvim/background.jpg",
         },
         hsb = {
-          brightness = 0.1,
+          brightness = 0.05,
           hue = 1.0,
           saturation = 1.0,
         },
-        opacity = 0.6,
+        opacity = 0.8,
         attachment = "Fixed",
         
       },

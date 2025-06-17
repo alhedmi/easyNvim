@@ -38,7 +38,7 @@ require("lazy").setup({
   version = false,
   config = function()
     require("mini.animate").setup({
-      scroll = { enable = true },
+      scroll = { enable = true, duration = 150, easing = "in-out", },
       resize = { enable = true },
       cursor = { enable = false },
       open = { enable = true },
@@ -150,6 +150,19 @@ require("lazy").setup({
   ft = { "markdown" },
   config = function()
     vim.g.mkdp_auto_start = 1  -- Optional: auto-start preview
+  end,
+},
+
+{
+  "rmagatti/auto-session",
+  config = function()
+    require("auto-session").setup({
+      log_level = "error",
+      auto_session_enable_last_session = false,  -- no auto-restore
+      auto_session_enabled = true,
+      auto_save_enabled = true,
+      auto_restore_enabled = false,
+    })
   end,
 },
 
