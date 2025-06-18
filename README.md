@@ -49,6 +49,19 @@ Before you begin, make sure you have:
 - [Chocolatey](https://docs.chocolatey.org) or scoop to install NeoVim if you havent already installed it.
 ---
 
+
+###  Backing up your old Neovim config (optional)
+If you already have a Neovim setup, it’s smart to back it up first:
+
+```bash
+mkdir -p ~/nvim_backup
+cp -r ~/.config/nvim ~/nvim_backup/
+cp -r ~/.local/share/nvim ~/nvim_backup/
+cp -r ~/.cache/nvim ~/nvim_backup/
+```
+
+---
+
 ###  Step-by-step
 
 #### 1. Clone this repository inside any directory you like.
@@ -89,17 +102,6 @@ chmod +x install.sh
 
 ---
 
-###  Backing up your old Neovim config (optional)
-If you already have a Neovim setup, it’s smart to back it up first:
-
-```bash
-mkdir -p ~/nvim_backup
-cp -r ~/.config/nvim ~/nvim_backup/
-cp -r ~/.local/share/nvim ~/nvim_backup/
-cp -r ~/.cache/nvim ~/nvim_backup/
-```
-
----
 
 ###  First launch
 
