@@ -1,9 +1,9 @@
 -- .wezterm.lua
 
-
-
-
 local wezterm = require 'wezterm'
+
+local script_dir = wezterm.config_dir
+
 
 return {
   color_scheme = "gruvbox-material",
@@ -15,14 +15,14 @@ return {
     background = {
       {
         source = {
-          File = "C:/Users/ameer/AppData/Local/nvim/background.jpg",
+          File = script_dir .. "/weztermImages/mask.jpg",
         },
         hsb = {
           brightness = 0.05,
           hue = 1.0,
           saturation = 1.0,
         },
-        opacity = 0.8,
+        opacity = 0.99,
         attachment = "Fixed",
         
       },

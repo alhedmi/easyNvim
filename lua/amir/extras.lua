@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("User", {
 -- Extra HELP!!!!
 
 vim.api.nvim_create_user_command("EasyNvimHelp", function()
-  vim.cmd("vsplit ~/.config/nvim/README.md")
+  vim.cmd("vsplit " .. vim.fn.stdpath("config") .. "/README.md")
   vim.cmd("set filetype=markdown")  
 end, {})
 
