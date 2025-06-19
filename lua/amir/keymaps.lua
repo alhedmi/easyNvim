@@ -30,6 +30,9 @@ end, {
   silent = true,
 })
 
+
+vim.keymap.set("n", "<Leader>md",":MarkdownPreview<CR>", { desc = "Open EasyNvim Help", noremap = true, silent = true })
+
 -- Insert mode: 'jj' to exit insert mode (like <Esc>)
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode with jj", noremap = true, silent = true })
 

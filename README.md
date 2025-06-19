@@ -12,7 +12,7 @@
 Custom NeoVim configuration with minimal installation steps and focus on ease-of-use, speed, and modern UI features.
 
 
-## 🔑 easyNvim Keymaps and commands
+## 🔑 easyNvim Keymaps and commands 
 <details>
  <summary> 🔑 Click to view all keymaps</summary>
 
@@ -31,6 +31,7 @@ Custom NeoVim configuration with minimal installation steps and focus on ease-of
 | `<leader>tt`   | n    | Toggle terminal                                            |
 | `<leader>tn`   | n    | New tab with dashboard                                     |
 | `<leader>tc`   | n    | Smart tab or buffer close                                  |
+| `<leader>md`   | n    | Open File(.md) in markdown format                          |
 | `<Tab>`        | n    | Cycle to next buffer                                       |
 | `<S-Tab>`      | n    | Cycle to previous buffer                                   |
 | `<leader>cd`   | n    | Copy active file’s directory to clipboard                  |
