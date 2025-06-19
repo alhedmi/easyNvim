@@ -13,22 +13,49 @@ Custom NeoVim configuration with minimal installation steps and focus on ease-of
 
 
 ## 🔑 easyNvim Keymaps and commands
+<details>
+ <summary> 🔑 Click to view all keymaps</summary>
 
 <!----easynvim_tips_start-->
 | Keymap         | Mode | Description                                                |
 |----------------|------|------------------------------------------------------------|
 | `jj`           | i    | Exit insert mode (maps to `<Esc>`)                         |
-| `<leader>t`    | n    | Open terminal in a new tab                                 |
-| `<leader>tc`   | n    | Close the current tab                                      |
-| `<Tab>`        | n    | Cycle to the next buffer (BufferLine)                      |
-| `<S-Tab>`      | n    | Cycle to the previous buffer                               |
-| `<leader>cd`   | n    | Copy the current file’s directory to clipboard             |
+| `jj`           | t    | Exit terminal mode                                         |
+| `<C-s>`        | n/i  | Save file                                                  |
+| `<C-h>`        | n    | Move to left window                                        |
+| `<C-l>`        | n    | Move to right window                                       |
+| `<C-j>`        | n    | Move to lower window                                       |
+| `<C-k>`        | n    | Move to upper window                                       |
+| `<leader>q`    | n    | Quit                                                       |
+| `<leader>h`    | n    | Open dashboard (Alpha)                                     |
+| `<leader>tt`   | n    | Toggle terminal                                            |
+| `<leader>tn`   | n    | New tab with dashboard                                     |
+| `<leader>tc`   | n    | Smart tab or buffer close                                  |
+| `<Tab>`        | n    | Cycle to next buffer                                       |
+| `<S-Tab>`      | n    | Cycle to previous buffer                                   |
+| `<leader>cd`   | n    | Copy active file’s directory to clipboard                  |
 | `<leader>..`   | n    | Open the easyNvim help file in a split view                |
 | `<leader>.-`   | n    | Open the help file (`README.md`) in the browser preview    |
-| `<leader>h`    | n    | Open a new tab and show the dashboard                      |
+| `<leader>e`    | n    | Toggle file tree                                           |
+| `gd`           | n    | Go to definition                                           |
+| `gr`           | n    | Show references                                            |
+| `gi`           | n    | Go to implementation                                       |
+| `K`            | n    | LSP hover docs                                             |
+| `<leader>rn`   | n    | Rename symbol                                              |
+| `<leader>ca`   | n    | Code action                                                |
+| `<leader>ff`   | n    | Telescope: Find files                                      |
+| `<leader>fg`   | n    | Telescope: Live grep                                       |
+| `<leader>fb`   | n    | Telescope: List buffers                                    |
+| `<leader>fh`   | n    | Telescope: Help tags                                       |
+| `<leader>de`   | n    | Show diagnostic under cursor                               |
+| `<leader>dc`   | n    | Copy all diagnostics on current line                       |
+| `[d`           | n    | Go to previous diagnostic                                  |
+| `]d`           | n    | Go to next diagnostic                                      |
 | `:SessionRestore` | cmd | Restore the last saved session manually                  |
 | `:Q`           | cmd  | Safe quit — prevents exiting if there are unsaved buffers  |
 <!----easynvim_tips_end-->
+
+</details>
 
 ---
 ### screenshots
