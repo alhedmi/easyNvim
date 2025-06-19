@@ -43,10 +43,10 @@ Custom NeoVim configuration with minimal installation steps and focus on ease-of
 ###  Requirements
 Before you begin, make sure you have:
 
-- Python 3.x (`python3` or `py` command)
+- Python 3
 - pip
-- Git
-- [Chocolatey](https://docs.chocolatey.org) or scoop to install NeoVim if you havent already installed it.
+- Git (to clone the Repo and link it to nvim)
+- For Windows: [Chocolatey](https://docs.chocolatey.org) or scoop 
 ---
 
 
@@ -118,6 +118,20 @@ Then enjoy your custom setup with:
 - `<leader>t` → Terminal tab
 
 ---
+### Troubleshooting
+> If you get the error message ``Lazy is not an Editor command`` then Symlink has probably failed due to a wrong path, 
+>
+> if so please run the following commands to restablish the Symlink: 
+>
+**For Windows**
+>
+> **replace Target path with the actual path you cloned this repo in.**
+```bash
+
+Remove-Item "$env:LOCALAPPDATA\nvim" -Force -Recurse
+New-Item -ItemType Junction -Path "$env:LOCALAPPDATA\nvim" -Target "Path_to_cloned_Repo\myNvim_Config\easyNvim"
+    
+```
 
 ### Using Wezterm
 

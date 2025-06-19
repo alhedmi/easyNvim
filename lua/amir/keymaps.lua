@@ -95,6 +95,33 @@ keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live Gre
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "List Buffers", unpack(opts) })
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help Tags", unpack(opts) })
 
+-- Diagnostics
+vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show diagnostic under cursor" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+
+
+vim.keymap.set("n", "<leader>dc", function()
+  local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+
+  if #diagnostics == 0 then
+    vim.notify("No diagnostics on this line.", vim.log.levels.WARN)
+    return
+  end
+
+  -- Combine all messages into a single string
+  local all_msgs = {}
+  for _, diag in ipairs(diagnostics) do
+    table.insert(all_msgs, diag.message)
+  end
+  local combined = table.concat(all_msgs, "\n")
+
+  -- Copy to system clipboard
+  vim.fn.setreg("+", combined)
+  vim.notify("📋 Copied diagnostic(s) to clipboard.", vim.log.levels.INFO)
+end, { desc = "Copy all diagnostics on line", noremap = true, silent = true })
+
+
 -- 📁 File Tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle File Tree", unpack(opts) })
 

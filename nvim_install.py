@@ -11,12 +11,27 @@ from rich.console import Console
 
 
 
-HOME = os.path.expanduser("~")
-NVIM_CONFIG_PATH = os.path.join(HOME, ".config", "nvim")
-NVIM_DATA_PATH = os.path.join(HOME, ".local", "share", "nvim")
-NVIM_CACHE_PATH = os.path.join(HOME, ".cache", "nvim")
-CURRENT_DIR = os.getcwd()
+if os.name == "nt":
+    local_appdata = os.getenv("LOCALAPPDATA")
+    if local_appdata is None:
+        print("❌ LOCALAPPDATA environment variable is not set, please set LOCALAPPDATA as an environment variable and run the script again")
+        input("Press Enter to Quit")
+        sys.exit(1)
 
+    NVIM_CONFIG_PATH = os.path.join(local_appdata, "nvim")
+    NVIM_DATA_PATH = os.path.join(local_appdata, "nvim-data")
+    NVIM_CACHE_PATH = os.path.join(local_appdata, "nvim-data", "site", "cache")
+else:
+    HOME = os.path.expanduser("~") 
+    NVIM_CONFIG_PATH = os.path.join(HOME, ".config", "nvim")
+    NVIM_DATA_PATH = os.path.join(HOME, ".local", "share", "nvim")
+    NVIM_CACHE_PATH = os.path.join(HOME, ".cache", "nvim")
+
+print('nvim Config Path : ',NVIM_CONFIG_PATH + "\n")
+print('nvim DATA Path : ',NVIM_DATA_PATH)
+print('nvim CACHE Path : ',NVIM_CACHE_PATH)
+CURRENT_DIR = os.getcwd()
+input('Press Enter Continue ')
 REPO_EXPECTED_FILE = os.path.join(CURRENT_DIR, "nvim_install.py")
 REPO_LUA_DIR = os.path.join(CURRENT_DIR, "lua")
 REPO_INIT_LUA = os.path.join(CURRENT_DIR, "init.lua")
@@ -104,10 +119,10 @@ def install_dependencies():
     if os_type == "Linux":
         if is_command_available("apt"):
             run("sudo apt update")
-            run("sudo apt install -y neovim git curl ripgrep fd-find python3-pip gcc")
+            run("sudo apt install -y neovim git curl ripgrep fd-find gcc")
         elif is_command_available("pacman"):
             run("sudo pacman -Syu --noconfirm")
-            run("sudo pacman -S --noconfirm neovim git curl ripgrep fd python-pip gcc")
+            run("sudo pacman -S --noconfirm neovim git curl ripgrep fd gcc")
         else:
             print("Unsupported Linux package manager.")
             sys.exit(1)
@@ -116,7 +131,7 @@ def install_dependencies():
         if not is_command_available("brew"):
             print("🍺 Homebrew not found. Install it from https://brew.sh first.")
             sys.exit(1)
-        run("brew install neovim git curl ripgrep fd python3 gcc")
+        run("brew install neovim git curl ripgrep fd gcc")
 
     elif os_type == "Windows":
         if not is_windows_admin():
@@ -125,10 +140,10 @@ def install_dependencies():
             sys.exit(1)
 
         if is_command_available("choco"):
-            run("choco install -y neovim git curl ripgrep python")
+            run("choco install -y neovim git curl ripgrep")
 
         elif is_command_available("scoop"):
-            run("scoop install neovim git curl ripgrep python")
+            run("scoop install neovim git curl ripgrep")
         else:
             print("❌ No supported package manager found (choco or scoop).")
             print("➡️ Please install dependencies manually or install Chocolatey from:")
