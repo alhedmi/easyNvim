@@ -21,14 +21,16 @@ keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit", unpack(opts) })
 
 vim.keymap.set("n", "<Leader>..",":EasyNvimHelp<CR>", { desc = "Open EasyNvim Help", noremap = true, silent = true })
 
-vim.keymap.set("n", "<Leader>.-", function()
-  vim.cmd("EasyNvimHelp")
-  vim.cmd("MarkdownPreview")
-end, {
-  desc = "Open EasyNvimHelp in MARKDOWN format",
-  noremap = true,
-  silent = true,
-})
+--OLD KEYMAP replaced with an in editor Markdown preview
+--
+-- vim.keymap.set("n", "<Leader>.-", function()
+--   vim.cmd("EasyNvimHelp")
+--   vim.cmd("MarkdownPreview")
+-- end, {
+--   desc = "Open EasyNvimHelp in MARKDOWN format",
+--   noremap = true,
+--   silent = true,
+-- })
 
 
 vim.keymap.set("n", "<Leader>md",":MarkdownPreview<CR>", { desc = "Open EasyNvim Help", noremap = true, silent = true })
