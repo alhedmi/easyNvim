@@ -8,6 +8,9 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- remap ctrl-q to ctrl-v for block visual mode (Windows sucks!)
+vim.keymap.set("n", "<C-q>", "<C-v>") 
+
 -- 🔒 Core Keymaps
 keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save File", unpack(opts) })
 keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { desc = "Save File", unpack(opts) })

@@ -52,7 +52,7 @@ require("lazy").setup({
   { "nvim-tree/nvim-web-devicons" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-telescope/telescope.nvim", tag = "0.1.3" },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter",lazy = false, build = ":TSUpdate" },
 
   -- ⚙️ LSP, Completion, Snippets
   { "neovim/nvim-lspconfig" },
