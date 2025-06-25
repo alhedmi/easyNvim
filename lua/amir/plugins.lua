@@ -52,7 +52,28 @@ require("lazy").setup({
   { "nvim-tree/nvim-web-devicons" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-telescope/telescope.nvim", tag = "0.1.3" },
-  { "nvim-treesitter/nvim-treesitter",lazy = false, build = ":TSUpdate" },
+
+{
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+
+    -- For blink.cmp's completion
+    -- source
+    dependencies = {
+        "saghen/blink.cmp"
+    },
+},
+
+  {
+      "nvim-treesitter/nvim-treesitter",
+      lazy = false,
+      build = ":TSUpdate",
+      
+        dependencies = {
+            "OXY2DEV/markview.nvim"
+        },
+  },
+
 
   -- ⚙️ LSP, Completion, Snippets
   { "neovim/nvim-lspconfig" },
@@ -180,16 +201,6 @@ require("lazy").setup({
 },
 
 
-{
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-
-    -- For blink.cmp's completion
-    -- source
-    dependencies = {
-        "saghen/blink.cmp"
-    },
-},
 
 {
   "rmagatti/auto-session",

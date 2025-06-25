@@ -101,7 +101,7 @@ cd easyNvim
 #### 2. Run the install script
 
 #####  Linux / macOS
-```
+```bash
 chmod +x install.sh
 
 ./install.sh
@@ -175,11 +175,33 @@ Use the ``.wezterm.lua`` file from the cloned Repo to configure **wezterm** and 
 We'll have to download and install Wezterm, which is very easy to do, then add the lua config file 
 to you Enviorment variables:
 
-#### Example on Windows:
+#### installation
+
+-> install from Wezterm's website : [install wezterm](https://wezterm.org/installation)
+
+OR :
+
+##### For Windows Windows:
+```bash  
+    choco install wezterm -y
+```
+##### For macOS:
+``` 
+    brew install --cask wezterm 
+
+```
+If you'd like to use a nightly build:
+
+```
+    brew install --cask wezterm@nightly
+```
+
+Then add it to the Envoirment variables:
 
 System --> Enviorment variables --> User variables: 
+
 ```
-Name: WEZTERM_CONFIG_FILE | Path: "Path/to/.wezterm.lua"
+    Name: WEZTERM_CONFIG_FILE | Path: "Path/to/.wezterm.lua"
 ```
 
 ##  Credits & License 
