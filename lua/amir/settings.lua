@@ -2,6 +2,25 @@
 local opt = vim.opt
 local g = vim.g
 
+
+-- Conceallevel
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.conceallevel = 1
+    vim.opt_local.concealcursor = "nc"
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function()
+    vim.opt_local.conceallevel = 2
+    vim.opt_local.concealcursor = "nc"
+  end,
+})
+
+
 -- UI
 opt.number = true                -- Show line numbers
 opt.relativenumber = true       -- Relative line numbers

@@ -64,16 +64,44 @@ require("lazy").setup({
     },
 },
 
-  {
-      "nvim-treesitter/nvim-treesitter",
-      lazy = false,
-      build = ":TSUpdate",
-      
-        dependencies = {
-            "OXY2DEV/markview.nvim"
-        },
+{
+  "nvim-treesitter/nvim-treesitter",
+  lazy = false,
+  build = ":TSUpdate",
+  dependencies = {
+    "OXY2DEV/markview.nvim",
   },
+  config = function()
+    require("nvim-treesitter.configs").setup({
+      ensure_installed = {
+        "lua",
+        "python",
+        "markdown",
+        "markdown_inline",
+        "latex", 
+      },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { "latex", "markdown" },
+      },
+    })
+  end,
+},
 
+-- LATEX viewer
+{
+  "lervag/vimtex",
+  ft = { "tex" },
+  init = function()
+    vim.g.vimtex_view_method = "general"
+    vim.g.vimtex_view_general_viewer = [[C:\Program Files\SumatraPDF\SumatraPDF.exe]]
+    vim.g.vimtex_view_general_options = [[
+      -reuse-instance
+      -forward-search @tex @line @pdf
+    ]]
+    vim.g.vimtex_compiler_method = "latexmk"
+  end,
+},
 
   -- ⚙️ LSP, Completion, Snippets
   { "neovim/nvim-lspconfig" },

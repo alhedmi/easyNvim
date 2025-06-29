@@ -4,7 +4,7 @@ local config = require("amir.config")
 -- Setup Mason (LSP installer)
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "pyright", "clangd" },
+  ensure_installed = { "pyright", "clangd","texlab" },
 })
 
 -- Setup LSP servers
