@@ -75,6 +75,13 @@ Before you begin, make sure you have:
 - pip
 - Git (to clone the Repo and link it to nvim)
 - For Windows: [Chocolatey](https://docs.chocolatey.org) or scoop 
+    To Install Chocolatey on Windows with PowerShell:
+    ```        
+    Set-ExecutionPolicy Bypass -Scope Process -Force; `
+    [System.Net.ServicePointManager]::SecurityProtocol = `
+    [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    ```
 ---
 
 
@@ -160,6 +167,31 @@ Remove-Item "$env:LOCALAPPDATA\nvim" -Force -Recurse
 New-Item -ItemType Junction -Path "$env:LOCALAPPDATA\nvim" -Target "Path_to_cloned_Repo\myNvim_Config\easyNvim"
     
 ```
+
+##### Latex compiler and viewer:
+Install MiKTeX (recommended lightweight TeX engine for Windows)
+```
+choco install miktex --yes
+```
+After installing, run:
+
+```
+miktex-console
+```
+And configure it to install missing packages on-the-fly (or silently) for convenience.
+
+Install SumatraPDF (best viewer for vimtex on Windows)
+```
+choco install sumatrapdf --yes
+```
+Then Install perl by running:
+```
+choco install strawberryperl --yes
+```
+
+That is it, you should be able to edit compile and view Latex with Neovim
+open ``your-file.tex`` file with nvim and hit ``<leader>ll`` to start compiler then open ``your-file.pdf`` in **SumatraPDF** 
+    ``everytime you save changes in .tex file the pdf in SumatraPDF will update automatically.``
 
 ### Using Wezterm
 
