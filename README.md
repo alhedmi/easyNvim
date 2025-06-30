@@ -50,6 +50,8 @@ Custom NeoVim configuration with minimal installation steps and focus on ease-of
 | `<leader>fh`   | n    | Telescope: Help tags                                       |
 | `<leader>de`   | n    | Show diagnostic under cursor                               |
 | `<leader>dc`   | n    | Copy all diagnostics on current line                       |
+| `<leader>l`    | n    | Latex Compiler shortcut List                               |
+| `<leader>ll`   | n    | start/stop the Latex compiler in continous mode            |
 | `[d`           | n    | Go to previous diagnostic                                  |
 | `]d`           | n    | Go to next diagnostic                                      |
 | `:SessionRestore` | cmd | Restore the last saved session manually                  |
