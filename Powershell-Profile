@@ -1,0 +1,46 @@
+# Ensure PSReadLine
+if (-not (Get-Module -ListAvailable -Name PSReadLine)) {
+    Write-Host "Installing PSReadLine..." -ForegroundColor Yellow
+    Install-Module -Name PSReadLine -Force -Scope CurrentUser
+}
+Import-Module PSReadLine
+
+# Oh My Posh installation
+$ompPath = "$env:LOCALAPPDATA\Programs\oh-my-posh\bin\oh-my-posh.exe"
+if (-not (Test-Path $ompPath)) {
+    Write-Host "Installing Oh My Posh..." -ForegroundColor Yellow
+    Invoke-WebRequest -Uri "https://ohmyposh.dev/install.ps1" -UseBasicParsing | Invoke-Expression
+}
+
+# Set atomic theme if Oh My Posh is installed
+if (Test-Path $ompPath) {
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+}
+
+# Enable predictions if supported
+if ($host.Name -eq 'ConsoleHost' -and (Get-Module PSReadLine).Version -ge [Version]"2.2.0") {
+    Set-PSReadLineOption -PredictionSource History
+    Set-PSReadLineOption -PredictionViewStyle InlineView
+    Set-PSReadLineOption -Colors @{ "InlinePrediction" = "$([ConsoleColor]::DarkGray)" }
+} else {
+    Set-PSReadLineOption -PredictionSource History
+}
+
+# --- PowerShell Update Checker ---
+try {
+    $currentVersion = $PSVersionTable.PSVersion
+    $latestVersion = Invoke-RestMethod -Uri "https://api.github.com/repos/PowerShell/PowerShell/releases/latest" `
+                                       -Headers @{ "User-Agent" = "pwsh-update-checker" } |
+                     Select-Object -ExpandProperty tag_name
+    $latestVersion = $latestVersion.TrimStart("v")
+
+    if ([version]$latestVersion -gt $currentVersion) {
+        $choice = Read-Host "A new version of PowerShell is available. Install it now via winget? (y/n)"
+        if ($choice -match "^[yY]$") {
+            Start-Process "pwsh" -Verb RunAs -ArgumentList '-NoExit', '-Command', `
+                'winget upgrade --id Microsoft.PowerShell --source winget --accept-source-agreements --accept-package-agreements'
+        }
+    }
+} catch {
+    Write-Host "⚠ Failed to check for PowerShell updates: $_" -ForegroundColor DarkGray
+}
