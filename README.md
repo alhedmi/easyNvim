@@ -168,7 +168,7 @@ New-Item -ItemType Junction -Path "$env:LOCALAPPDATA\nvim" -Target "Path_to_clon
     
 ```
 
-##### Latex compiler and viewer:
+#### Latex compiler and viewer:
 Install MiKTeX (recommended lightweight TeX engine for Windows)
 ```
 choco install miktex --yes
