@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 
 set -e
@@ -9,8 +8,18 @@ if ! command -v pip3 &> /dev/null; then
     exit 1
 fi
 
+# Use a user-space directory for the virtual environment
+VENV_DIR="./install_venv"
+
+echo "[+] Creating Python environment in $VENV_DIR"
+python3 -m venv "$VENV_DIR"
+
+echo "[+] Activating virtual environment"
+# shellcheck disable=SC1091
+source "$VENV_DIR/bin/activate"
+
 echo "[+] Installing Python dependencies: pyfiglet, rich"
-pip3 install --user pyfiglet rich
+pip install pyfiglet rich
 
 echo "[+] Running the NeoVim installer..."
-python3 nvim_install.py
+python nvim_install.py

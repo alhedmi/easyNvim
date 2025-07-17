@@ -155,7 +155,7 @@ def install_dependencies():
         sys.exit(1)
 
 def install_python_support():
-    run("pip3 install --user pynvim")
+    run("pip3 install pynvim")
     
 def is_windows_admin():
     if os.name != 'nt':
