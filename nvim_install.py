@@ -119,10 +119,10 @@ def install_dependencies():
     if os_type == "Linux":
         if is_command_available("apt"):
             run("sudo apt update")
-            run("sudo apt install -y neovim git curl ripgrep fd-find gcc")
+            run("sudo apt install -y neovim git curl ripgrep fd-find gcc npm")
         elif is_command_available("pacman"):
             run("sudo pacman -Syu --noconfirm")
-            run("sudo pacman -S --noconfirm neovim git curl ripgrep fd gcc")
+            run("sudo pacman -S --noconfirm neovim git curl ripgrep fd gcc npm")
         else:
             print("Unsupported Linux package manager.")
             sys.exit(1)
@@ -131,7 +131,7 @@ def install_dependencies():
         if not is_command_available("brew"):
             print("🍺 Homebrew not found. Install it from https://brew.sh first.")
             sys.exit(1)
-        run("brew install neovim git curl ripgrep fd gcc")
+        run("brew install neovim git curl ripgrep fd gcc npm")
 
     elif os_type == "Windows":
         if not is_windows_admin():
@@ -140,7 +140,7 @@ def install_dependencies():
             sys.exit(1)
 
         if is_command_available("choco"):
-            run("choco install -y neovim git curl ripgrep")
+            run("choco install -y neovim git curl ripgrep npm")
 
         elif is_command_available("scoop"):
             run("scoop install neovim git curl ripgrep")
