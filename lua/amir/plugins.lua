@@ -93,13 +93,21 @@ require("lazy").setup({
   "lervag/vimtex",
   ft = { "tex" },
   init = function()
-    vim.g.vimtex_view_method = "general"
-    vim.g.vimtex_view_general_viewer = [[C:\Program Files\SumatraPDF\SumatraPDF.exe]]
-    vim.g.vimtex_view_general_options = [[
-      -reuse-instance
-      -forward-search @tex @line @pdf
-    ]]
-    vim.g.vimtex_compiler_method = "latexmk"
+    local sysname = vim.loop.os_uname().sysname
+
+    if sysname == "Windows_NT" then
+      vim.g.vimtex_view_method = "general"
+      vim.g.vimtex_view_general_viewer = [[C:\Program Files\SumatraPDF\SumatraPDF.exe]]
+      vim.g.vimtex_view_general_options = [[
+        -reuse-instance
+        -forward-search @tex @line @pdf
+      ]]
+      vim.g.vimtex_compiler_method = "latexmk"
+    else
+      -- Linux config
+      vim.g.vimtex_view_method = "zathura" -- or "skim", "okular", etc. depending on your setup
+      vim.g.vimtex_compiler_method = "latexmk" -- you can change this if needed
+    end
   end,
 },
 
@@ -243,7 +251,26 @@ require("lazy").setup({
   end,
 },
 
-  { "akinsho/toggleterm.nvim", version = "*", enabled = config.enable_terminal },
+{
+  "akinsho/toggleterm.nvim",
+  version = "*",
+  enabled = config.enable_terminal,
+  config = function()
+    require("toggleterm").setup({
+      shell = vim.fn.executable("fish") == 1 and "fish" or vim.o.shell,
+      direction = "float", -- or "horizontal"/"vertical"
+      start_in_insert = true,
+      persist_size = true,
+      shade_terminals = true,
+      close_on_exit = true,
+      float_opts = {
+        border = "curved",
+        winblend = 0,
+      },
+    })
+
+  end,
+},
   { "goolord/alpha-nvim", enabled = config.enable_dashboard },
   { "kylechui/nvim-surround", enabled = config.enable_surround },
   { "windwp/nvim-autopairs", enabled = config.enable_autopairs },
