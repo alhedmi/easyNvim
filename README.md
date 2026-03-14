@@ -76,6 +76,7 @@ Before you begin, make sure you have:
 - Python 3
 - pip
 - Git (to clone the Repo and link it to nvim)
+- npm (node.js)
 - For Windows: [Chocolatey](https://docs.chocolatey.org) or scoop 
     To Install Chocolatey on Windows with PowerShell:
     ```        
