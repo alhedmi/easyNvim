@@ -122,6 +122,7 @@ require("lazy").setup({
   { "hrsh7th/cmp-cmdline" },
   { "L3MON4D3/LuaSnip" },
   { "rafamadriz/friendly-snippets" },
+  { "elkowar/yuck.vim" },
 
   -- 🧼 Formatting & Linting
   { "stevearc/conform.nvim" },
